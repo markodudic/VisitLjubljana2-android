@@ -7,24 +7,19 @@
  */
 package com.phonegap.plugin.sqlitePlugin;
 
+import java.io.File;
+import java.util.HashMap;
+
+import org.apache.cordova.api.CallbackContext;
+import org.apache.cordova.api.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-
-import java.lang.Number;
-
-import java.util.HashMap;
-
-import org.apache.cordova.api.CordovaPlugin;
-import org.apache.cordova.api.CallbackContext;
-
 import android.database.Cursor;
-
-import android.database.sqlite.*;
-
-import android.util.Base64;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class SQLitePlugin extends CordovaPlugin

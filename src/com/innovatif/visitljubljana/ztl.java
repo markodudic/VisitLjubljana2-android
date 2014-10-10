@@ -28,8 +28,6 @@ import java.io.OutputStream;
 import org.apache.cordova.Config;
 import org.apache.cordova.DroidGap;
 
-import android.content.Context;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 
 import com.google.analytics.tracking.android.EasyTracker;
@@ -84,7 +82,6 @@ public class ztl extends DroidGap
     //Copy Paste this function in the class where you used above part
 	void copy(String file, String folder) throws IOException 
 	{
-	
 	 File CheckDirectory;
 	 CheckDirectory = new File(folder);
 	 if (!CheckDirectory.exists())

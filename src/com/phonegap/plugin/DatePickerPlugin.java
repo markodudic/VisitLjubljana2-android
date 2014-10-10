@@ -6,6 +6,8 @@ package com.phonegap.plugin;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.cordova.api.CallbackContext;
+import org.apache.cordova.api.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,9 +20,6 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
-
-import org.apache.cordova.api.CallbackContext;
-import org.apache.cordova.api.CordovaPlugin;
 
 /**
  * @author ng4e
