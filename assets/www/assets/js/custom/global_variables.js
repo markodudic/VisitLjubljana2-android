@@ -1,6 +1,6 @@
 //vedno spremeni to vrednost zato da se po instalaciji prepise cache in po potrebi baza
-var version_code=14;
-var VERSION="1.4.7";
+var version_code=15;
+var VERSION="1.5.1";
 
 //za deploy - ne izpisujejo se komentarji
 
