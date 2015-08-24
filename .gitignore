@@ -13,3 +13,5 @@ out
 # Gradle builds
 /build
 /bin
+/platform_www
+/platform-www
