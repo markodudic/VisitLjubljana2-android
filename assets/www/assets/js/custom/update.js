@@ -1,5 +1,6 @@
 //poigledamo ce obstajajo updejti
 function update_db() {
+	console.log("UPADET DB");
 	var tmp_query 		= "SELECT last_update FROM ztl_updates WHERE id_language ="+settings.id_lang;
 	var tmp_callback	= "check_update_success";
 	generate_query(tmp_query, tmp_callback);
@@ -36,6 +37,7 @@ function is_updt_finished() {
 }
 
 function check_update_success(results) {
+	console.log("UPADET DB SUCCESS");
 	if (updt_running  == 1) {
 		return;
 	} 
@@ -67,6 +69,21 @@ function check_update_success(results) {
 	    update_poigroup(server_url+lang_code+'/mobile_app/poigroup.json');
 	} else {
 		//updatam dogodke. prvic vse
+		console.log("STARTAM UPDATE");
+		
+		update_database('http://www.markodudic.si/'+DATABASE + ".db");
+			
+		//sam za razvoj
+		spinner.stop();
+		updt_finished = 0;
+		updt_running  = 0;
+		
+		spinner.stop();
+		load_current_div();
+		
+		
+/*
+		
 		if (localStorage.getItem('first_synhronization') == 0) {
 			update_event(server_url+lang_code+'/mobile_app/event.json');
 	    	localStorage.setItem('first_synhronization', 1);
@@ -83,7 +100,7 @@ function check_update_success(results) {
 			});
 	    
 		}
-
+/*
 		if (synhronize_all == 0) {
 			//updatam poi-je
 			var pois = new Array();
@@ -113,8 +130,49 @@ function check_update_success(results) {
 		    update_inspired(server_url+lang_code+'/mobile_app/inspired.json');
 		    update_poigroup(server_url+lang_code+'/mobile_app/poigroup.json');
 		}
+		*/
+		
 	}
 }
+/*********************** DATABASE ***********************/
+function update_database(url){
+	console.log("update DATABASE");
+
+	var file_path;
+	//if(detectAndroid()) {   
+        file_path = "/data/data/com.innovatif.visitljubljana/databases/" + DATABASE + ".db";
+        //file_path = ASSETS_FOLDER + DATABASE + ".db";
+    //} else {
+    //    file_path = "res//db//Database_3.db";
+    //}
+
+    
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+	    function onFileSystemSuccess(fileSystem) {
+	        fileSystem.root.getFile(
+	        DATABASE + ".db", {create: true, exclusive: false}, 
+	        function gotFileEntry(fileEntry) {
+	            //var sPath = fileEntry.fullPath.replace("dummy.html","");
+	            var fileTransfer = new FileTransfer();
+	            fileEntry.remove();
+
+	            fileTransfer.download(
+	            	url,
+	                file_path,
+	                function(theFile) {
+	                    console.log("download complete: " + theFile.toURI());
+	            		db 		= window.sqlitePlugin.openDatabase(DATABASE, "1.0", "ztl", -1);
+	            		reset_cache();
+	                },
+	                function(error) {
+	                    console.log("download error source " + error.source);
+	                    console.log("download error target " + error.target);
+	                    console.log("upload error code: " + error.code);
+	                }
+	            );
+	        }, fail);
+		}, fail);
+};
 
 /*********************** POI ***********************/
 

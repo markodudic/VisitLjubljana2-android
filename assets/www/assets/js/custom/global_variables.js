@@ -1,12 +1,12 @@
 //vedno spremeni to vrednost zato da se po instalaciji prepise cache in po potrebi baza
-var version_code=15;
-var VERSION="1.5.1";
+var version_code=16;
+var VERSION="1.6";
 
 //za deploy - ne izpisujejo se komentarji
-
+/*
 var console = {};
 console.log = function(){};
-
+*/
  
 var server_url = 'http://www.visitljubljana.com/';
 var develop = 0;
@@ -16,6 +16,7 @@ var populateDB = 0;
 var SETTINGS_FILE           = "settings.js"
 var SETTINGS_FOLDER     	= "Android/data/com.innovatif.visitljubljana/";
 var ASSETS_FOLDER     		= "/android_asset/www/";
+var DATABASE 				= "Database_3";
 
 //grupe za cache
 var EVENT_GROUP 			= 0;
